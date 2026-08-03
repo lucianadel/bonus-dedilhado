@@ -1,0 +1,12 @@
+# Dependências
+node_modules/
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações de editores de código (como VS Code)
+.vscode/
+
+# Arquivos de ambiente e senhas
+.env
