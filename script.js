@@ -72,7 +72,8 @@ function playString(freq,time){
 
 
 
-    osc.type = "sawtooth";
+    // Onda mais suave, sem o brilho agressivo de um sintetizador sawtooth.
+    osc.type = "triangle";
 
 
     osc.frequency.setValueAtTime(
@@ -104,9 +105,11 @@ function playString(freq,time){
     );
 
 
-    gain.gain.linearRampToValueAtTime(
-        0.35,
-        now + 0.02
+    // Ataque curto de uma corda beliscada. Rampas exponenciais
+    // precisam sempre partir de um valor maior que zero.
+    gain.gain.exponentialRampToValueAtTime(
+        0.32,
+        now + 0.015
     );
 
 
@@ -134,47 +137,6 @@ function playString(freq,time){
 
 
     // Harmônico para dar característica de corda
-
-    const harm = audioCtx.createOscillator();
-
-    const harmGain = audioCtx.createGain();
-
-
-
-    harm.type = "triangle";
-
-
-    harm.frequency.setValueAtTime(
-        freq * 2,
-        now
-    );
-
-
-
-    harmGain.gain.setValueAtTime(
-        0.08,
-        now
-    );
-
-
-    harmGain.gain.exponentialRampToValueAtTime(
-        0.001,
-        now + 0.8
-    );
-
-
-
-    harm.connect(harmGain);
-
-    harmGain.connect(audioCtx.destination);
-
-
-
-    harm.start(now);
-
-    harm.stop(now + 1);
-
-
 
 }
 
