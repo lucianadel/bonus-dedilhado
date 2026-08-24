@@ -136,8 +136,6 @@ function playString(freq,time){
 
 
 
-    // Harmônico para dar característica de corda
-
 }
 
 
